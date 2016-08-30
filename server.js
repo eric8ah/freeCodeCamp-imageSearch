@@ -1,7 +1,5 @@
 var express = require('express');
 var app = express();
-var queryString = require('querystring');
-var https = require('https');
 var request = require('request');
 var resultsArr = [];
 var mongodb = require('mongodb');
