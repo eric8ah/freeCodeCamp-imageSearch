@@ -3,6 +3,7 @@ var app = express();
 var request = require('request');
 var resultsArr = [];
 var mongodb = require('mongodb');
+var path = require('path');
 var mongo_url = 'mongodb://eric8ah:mySecretPass23@ds153775.mlab.com:53775/search-history';
 var MongoClient = mongodb.MongoClient;
 var string;
@@ -49,6 +50,21 @@ var getSearchHistory = function(db, callback) {
 }
 });
 };
+
+
+app.get('/', function(req, res) {
+    var readme = path.join(__dirname, 'README.md');
+    res.sendFile(readme, function(err) {
+        if (err) {
+        console.log(err);
+        res.status(err.status).end();
+        }
+        else {
+            console.log('File was sent');
+        }
+    });
+});
+
 
 app.get('/api/imagesearch/:query',function(req, res) {
    MongoClient.connect(mongo_url, function(err, db) {
